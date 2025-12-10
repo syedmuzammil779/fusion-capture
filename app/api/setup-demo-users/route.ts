@@ -72,28 +72,28 @@ export async function POST(request: Request) {
 
     let finalUserId: string;
 
-    if (userId) {
+    if (targetUserId) {
       // If userId is provided, use it directly
-      finalUserId = userId.toString();
+      finalUserId = targetUserId.toString();
 
       // Try to find user with ObjectId or string format
       let user;
       try {
         // Try ObjectId format first
         user = await db.collection("users").findOne({
-          _id: new ObjectId(userId),
+          _id: new ObjectId(targetUserId),
         });
       } catch (e) {
         // If ObjectId fails, try string format
         user = await db.collection("users").findOne({
-          _id: userId,
+          _id: targetUserId,
         });
       }
 
       // If still not found, try finding by userId in accounts collection
       if (!user) {
         const account = await db.collection("accounts").findOne({
-          userId: new ObjectId(userId),
+          userId: new ObjectId(targetUserId),
         });
         if (account) {
           finalUserId = account.userId.toString();
