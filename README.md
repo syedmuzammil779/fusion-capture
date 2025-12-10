@@ -1,6 +1,6 @@
 # Fusion Capture
 
-A comprehensive Next.js 16 application with SSO login (Google and GitHub) and role-based access control system.
+A comprehensive Next.js 16 application with SSO login (Google and GitHub) and a role-based access control system. 
 
 ## 🎯 Features
 
