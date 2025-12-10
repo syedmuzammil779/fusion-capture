@@ -46,13 +46,13 @@ export async function POST(request: Request) {
       );
     }
 
-    const { email, userId, role } = await request.json();
+    const { email, userId: targetUserId, role } = await request.json();
 
     if (!role) {
       return NextResponse.json({ error: "Role is required" }, { status: 400 });
     }
 
-    if (!email && !userId) {
+    if (!email && !targetUserId) {
       return NextResponse.json(
         { error: "Either email or userId is required" },
         { status: 400 }
